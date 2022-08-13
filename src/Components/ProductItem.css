@@ -1,0 +1,10 @@
+.product {
+  width: 386px;
+  height: 444px;
+  padding: 16px;
+}
+
+div > img {
+  max-width: 386px;
+  max-height: 444px;
+}

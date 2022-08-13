@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+.productDetailWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.productDetailImagecontainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 96px;
+  max-height: 96px;
+}
+
+.productDetailImages {
+  padding: 16px 16px 16px;
+}
+
+.addToCart {
+  width: 292px;
+  height: 52px;
+  /* position: absolute; */
+  background-color: #5ece7b;
+  border: transparent;
+  font-size: 16px;
+  font-family: Raleway;
+  font-weight: 600;
+  color: #ffffff;
+}
