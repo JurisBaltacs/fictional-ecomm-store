@@ -1,3 +1,4 @@
+import React from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,8 +7,8 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-
-import HomeScreen from "./Screens/HomeScreen";
+import HomeScreen from "./Router/RouterComponent";
+import ShopContextProvider from "./Contexts/ShopContextProvider";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -19,17 +20,28 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
 
 const link = from([errorLink, new HttpLink({ uri: "http://localhost:4000/" })]);
 
+// Ignore cache for AttributeSet
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      AttributeSet: {
+        keyFields: false,
+      },
+    },
+  }),
   link: link,
 });
 
-function App() {
-  return (
-    <ApolloProvider client={client}>
-      <HomeScreen />
-    </ApolloProvider>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <ShopContextProvider>
+        <ApolloProvider client={client}>
+          <HomeScreen />
+        </ApolloProvider>
+      </ShopContextProvider>
+    );
+  }
 }
 
 export default App;

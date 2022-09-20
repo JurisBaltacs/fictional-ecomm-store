@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
+.AttributeItems {
+  outline: 1px solid black;
+  width: 63px;
+  height: 45px;
+  margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Source Sans Pro";
+}
+
+.AttributeItems.selected {
+  outline: 3px solid black;
+}
+
+.overlayContent .AttributeItems {
+  width: 34px;
+  height: 24px;
+}

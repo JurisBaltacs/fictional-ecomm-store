@@ -1,0 +1,15 @@
+.topNav {
+  background-color: #ffffff;
+  overflow: hidden;
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topItems {
+  width: 220px;
+  display: flex;
+  justify-content: center;
+}

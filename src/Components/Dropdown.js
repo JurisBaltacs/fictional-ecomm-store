@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
+import { currencyArray, ShopContext } from "../Contexts/ShopContextProvider";
 
-const Dropdown = () => {
-  const [selected, setSelected] = useState("");
+export default class Dropdown extends React.Component {
+  render() {
+    return (
+      <div>
+        <select
+          name="selectList"
+          id="selectList"
+          value={this.context.selectedCurrency}
+          onChange={(e) => this.context.selectCurrency(e.target.value)}
+        >
+          {currencyArray.map((currencyOption, index) => (
+            <option key={index} value={currencyOption.code}>
+              {currencyOption.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
+}
 
-  const currencyArray = ["$ USD", "£ GBP", "A$ AUD", "¥ JPY", "₽ RUB"];
-
-  const handleChange = (e) => {
-    setSelected(e.target.value);
-  };
-
-  return (
-    <select name="selectList" id="selectList" onChange={handleChange}>
-      {currencyArray.map((currency, index) => (
-        <option key={index} value={currency}>
-          {currency}
-        </option>
-      ))}
-    </select>
-  );
-};
-
-export default Dropdown;
+Dropdown.contextType = ShopContext;
