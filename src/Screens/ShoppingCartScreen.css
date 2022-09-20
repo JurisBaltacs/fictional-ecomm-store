@@ -7,14 +7,9 @@
   justify-content: space-between;
   padding-right: 100px;
   border-top: #e5e5e5 solid 1px;
-  /* border-bottom: #e5e5e5 solid 1px; */
   padding-top: 32px;
   padding-bottom: 32px;
 }
-
-/* .cartWrapper .shoppingCartContent:last-of-type {
-  border-bottom: #e5e5e5 solid 1px;
-} */
 
 .shoppingCartContent:last-of-type {
   border-bottom: #e5e5e5 solid 1px;
