@@ -21,7 +21,7 @@ export default class ShopContextProvider extends React.Component {
     this.setState({ selectedCurrency: currencyFromLocalStorage });
 
     const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
-    if (cartItemsFromLocalStorage !== "") {
+    if (cartItemsFromLocalStorage) {
       try {
         const parsedCartItems = JSON.parse(cartItemsFromLocalStorage);
         this.setState({ cartItems: parsedCartItems });
