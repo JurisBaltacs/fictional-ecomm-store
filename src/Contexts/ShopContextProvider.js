@@ -16,6 +16,14 @@ export default class ShopContextProvider extends React.Component {
     cartItems: [],
   };
 
+  saveCartItemsToLocalStorage(cartItems) {
+    try {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  }
+
   componentDidMount() {
     const currencyFromLocalStorage = localStorage.getItem("currency") || "usd";
     this.setState({ selectedCurrency: currencyFromLocalStorage });
@@ -32,12 +40,23 @@ export default class ShopContextProvider extends React.Component {
   }
 
   addItemToCart = (item) => {
-    const updatedCartItems = [...this.state.cartItems, item];
-    try {
-      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    const id = this.state.cartItems.length
+      ? Math.max(...this.state.cartItems.map((item) => item.id)) + 1
+      : 1;
+
+    const itemWithId = {
+      ...item,
+      productId: item.id,
+      id,
+    };
+
+    const updatedCartItems = [...this.state.cartItems, itemWithId];
+    this.saveCartItemsToLocalStorage(updatedCartItems);
+    // try {
+    //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    // } catch (error) {
+    //   console.log("error: ", error);
+    // }
     this.setState({ cartItems: updatedCartItems });
   };
 
@@ -45,6 +64,12 @@ export default class ShopContextProvider extends React.Component {
     const updatedCartItems = this.state.cartItems.filter(
       (item) => item.id !== productId
     );
+    this.saveCartItemsToLocalStorage(updatedCartItems);
+    // try {
+    //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    // } catch (error) {
+    //   console.log("error: ", error);
+    // }
     this.setState({ cartItems: updatedCartItems });
   };
 
@@ -55,11 +80,12 @@ export default class ShopContextProvider extends React.Component {
       }
       return item;
     });
-    try {
-      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    this.saveCartItemsToLocalStorage(updatedCartItems);
+    // try {
+    //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    // } catch (error) {
+    //   console.log("error: ", error);
+    // }
     this.setState({ cartItems: updatedCartItems });
   };
 

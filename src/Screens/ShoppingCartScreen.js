@@ -5,7 +5,7 @@ import "./ShoppingCartScreen.css";
 import Slider from "../Components/Slider/Slider.js";
 
 class ShoppingCartScreen extends React.Component {
-  render() {
+  findQuantityPrice = () => {
     let cartItems = this.context.cartItems;
     let totalQuantity = 0;
     let totalPrice = 0;
@@ -21,9 +21,16 @@ class ShoppingCartScreen extends React.Component {
       priceSymbol = priceAmount.currency.symbol;
     });
 
+    return { totalPrice, priceSymbol, totalQuantity, cartItems };
+  };
+
+  render() {
+    const { totalPrice, priceSymbol, totalQuantity, cartItems } =
+      this.findQuantityPrice();
+
     return (
       <div>
-        {!this.props.hideCartElement ? <h1>CART</h1> : null}
+        {!this.props.isCartOverlayItem ? <h1>CART</h1> : null}
 
         <div>
           {cartItems.map((item, index) => {
@@ -39,9 +46,8 @@ class ShoppingCartScreen extends React.Component {
             cartAttributesSorted.sort((a, b) => (a.id < b.id ? -1 : 1));
 
             return (
-              // <div key={item.id}>
-              <div className="shoppingCartContent" key={item.id}>
-                <div key={index}>
+              <div className="shoppingCartItem" key={item.id}>
+                <div className="shoppingCartContent" key={index}>
                   <div className="shoppingCartBrand">{item.brand}</div>
                   <div className="shoppingCartName">{item.name}</div>
                   <div className="shoppingCartPrice">
@@ -60,6 +66,7 @@ class ShoppingCartScreen extends React.Component {
                           >
                             {attribute.items.map((attributeItem) => (
                               <Attribute
+                                isCartOverlayItem={this.props.isCartOverlayItem}
                                 key={attributeItem.value}
                                 data={attributeItem.value}
                                 selected={
@@ -88,6 +95,8 @@ class ShoppingCartScreen extends React.Component {
                           >
                             {attribute.items.map((attributeItem) => (
                               <Attribute
+                                isColorAttribute={true}
+                                isCartOverlayItem={this.props.isCartOverlayItem}
                                 key={attributeItem.value}
                                 color={attributeItem.value}
                                 selected={
@@ -116,6 +125,7 @@ class ShoppingCartScreen extends React.Component {
                           >
                             {attribute.items.map((attributeItem) => (
                               <Attribute
+                                isCartOverlayItem={this.props.isCartOverlayItem}
                                 key={attributeItem.value}
                                 data={attributeItem.value}
                                 selected={
@@ -168,13 +178,12 @@ class ShoppingCartScreen extends React.Component {
                 </div>
                 <Slider stockStatus={item.inStock} slides={item.gallery} />
               </div>
-              // </div>
             );
           })}
         </div>
-        {!this.props.hideCartElement ? (
+        {!this.props.isCartOverlayItem ? (
           <div className="grid-container">
-            <div>Tax:</div>
+            <div>Tax 21%:</div>
             <div className="shoppingCartTotals">
               {priceSymbol} {(totalPrice * 0.21).toFixed(2)}
             </div>
@@ -187,7 +196,7 @@ class ShoppingCartScreen extends React.Component {
             </div>
           </div>
         ) : null}
-        {!this.props.hideCartElement ? (
+        {!this.props.isCartOverlayItem ? (
           <button className="order">ORDER</button>
         ) : null}
       </div>

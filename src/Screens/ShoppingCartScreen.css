@@ -1,29 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400&subset=latin,latin-ext);
 
-.shoppingCartContent {
+.shoppingCartItem {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-right: 100px;
   border-top: #e5e5e5 solid 1px;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding: 32px 0px;
 }
 
-.shoppingCartContent:last-of-type {
+.shoppingCartItem:last-of-type {
   border-bottom: #e5e5e5 solid 1px;
 }
 
-.overlayContent .shoppingCartContent {
-  height: 150px;
+.overlayContent .shoppingCartItem {
+  height: 215px;
   border: solid transparent;
-  margin-top: 12px;
+  padding: 12px 0px;
+  width: 460px;
 }
 
 .shoppingAttributeCartItemsWrapper {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
@@ -71,6 +67,7 @@
   display: flex;
   justify-content: flex-end;
   flex: 1;
+  margin-right: 12px;
 }
 
 .overlayContent .shoppingCartQuantityWrapper {
@@ -134,4 +131,10 @@
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 32px;
+}
+
+.shoppingCartContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }

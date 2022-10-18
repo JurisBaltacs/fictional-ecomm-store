@@ -1,7 +1,8 @@
 import React from "react";
+import parse from "html-react-parser";
 import { ShopContext } from "../Contexts/ShopContextProvider";
 import Attribute from "./ProductAttributes/Attribute.js";
-import AddToCartDescription from "./AddToCartDescription";
+import AddToCartButton from "./AddToCartButton";
 import withRouter from "../Utils/withRouter.js";
 import "./ProductDataComponent.css";
 
@@ -15,7 +16,8 @@ class ProductDataComponent extends React.Component {
       selectedImageIndex: 0,
     };
   }
-  render() {
+
+  findProductData = () => {
     const { data } = this.props;
     const gallery = data.gallery || [];
     const prices = data.prices || [];
@@ -31,29 +33,63 @@ class ProductDataComponent extends React.Component {
     const priceAmount = price?.amount;
     const priceSymbol = price?.currency.symbol;
 
-    const itemInCart = this.context.cartItems.find(
-      (item) => item.id === data.id
-    );
-
-    const addToCart = () => {
-      if (!itemInCart) {
-        this.context.addItemToCart({
-          ...data,
-          quantity: 1,
-          selectedColor: this.state.color,
-          selectedSize: this.state.size,
-          selectedCapacity: this.state.capacity,
-        });
-      } else {
-        this.context.updateCartItem({
-          ...itemInCart,
-          quantity: itemInCart.quantity + 1,
-        });
-      }
+    return {
+      priceAmount,
+      priceSymbol,
+      attributesSorted,
+      gallery,
     };
+  };
+
+  addToCart = () => {
+    const { data } = this.props;
+    const itemInCart = this.context.cartItems.find(
+      (item) =>
+        item.cartItemId === this.context.cartItems.cartItemId &&
+        item.selectedSize === this.state.size &&
+        item.selectedColor === this.state.color &&
+        item.selectedCapacity === this.state.capacity
+    );
+    if (!itemInCart) {
+      this.context.addItemToCart({
+        ...data,
+        quantity: 1,
+        selectedColor: this.state.color,
+        selectedSize: this.state.size,
+        selectedCapacity: this.state.capacity,
+      });
+    } else {
+      this.context.updateCartItem({
+        ...itemInCart,
+        quantity: itemInCart.quantity + 1,
+      });
+    }
+  };
+
+  checkIfAllAttributesSet = () => {
+    const { data } = this.props;
+    const attributes = data.attributes || [];
+    let isAttributeSet = true;
+
+    attributes.forEach((attribute) => {
+      if (attribute.id === "Size" && !this.state.size) isAttributeSet = false;
+      if (attribute.id === "Color" && !this.state.color) isAttributeSet = false;
+      if (attribute.id === "Capacity" && !this.state.capacity)
+        isAttributeSet = false;
+    });
+    return isAttributeSet;
+  };
+
+  render() {
+    const { data } = this.props;
+    const { priceAmount, priceSymbol, attributesSorted, gallery } =
+      this.findProductData();
+
+    const isAttributeSet = this.checkIfAllAttributesSet();
+
     return (
       <div className="productDetailWrapper">
-        <div className="productDetailImagecontainer">
+        <div className="productDetailImageContainer">
           {gallery.map((image, index) => (
             <img
               style={{
@@ -83,7 +119,7 @@ class ProductDataComponent extends React.Component {
           </div>
         </div>
 
-        <div className="prductInfo">
+        <div className="productInfo">
           <div>
             <div className="shoppingCartBrand">{data.brand}</div>
             <div className="shoppingCartName">{data.name}</div>
@@ -118,6 +154,7 @@ class ProductDataComponent extends React.Component {
                     {attribute.items.map((item) => (
                       <Attribute
                         key={item.value}
+                        isColorAttribute={true}
                         color={item.value}
                         onClick={() => this.setState({ color: item.value })}
                         selected={this.state.color === item.value}
@@ -155,15 +192,18 @@ class ProductDataComponent extends React.Component {
           </div>
 
           <div className="productDataAddToCart">
-            <AddToCartDescription
-              description={data.description}
-              onAddToCartClick={addToCart}
+            <AddToCartButton
+              isInStock={data.inStock}
+              isEnabled={isAttributeSet}
+              onAddToCartClick={this.addToCart}
             />
           </div>
+          <div className="description">{parse(data.description)}</div>
         </div>
       </div>
     );
   }
 }
+
 ProductDataComponent.contextType = ShopContext;
 export default withRouter(ProductDataComponent);

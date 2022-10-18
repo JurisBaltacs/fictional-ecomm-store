@@ -1,4 +1,3 @@
-
 .topLevel {
   padding-left: 101px;
   padding-right: 101px;
@@ -35,7 +34,8 @@ select > option {
   background: white;
   border: transparent solid;
   display: flex;
-  flex-direction: row;
+  padding-top: 10px;
+  z-index: 2;
 }
 
 .topNavCartCircle {
@@ -46,11 +46,18 @@ select > option {
   position: absolute;
   color: white;
   margin-left: 14px;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
 }
 
 .wrapper {
-  padding-top: 0px;
   display: flex;
-  flex-direction: row;
   align-items: center;
+}
+
+.logo {
+  position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }

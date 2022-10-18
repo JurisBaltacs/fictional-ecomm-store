@@ -11,11 +11,21 @@
   font-family: "Source Sans Pro";
 }
 
-.AttributeItems.selected {
-  outline: 3px solid black;
+.overlayContent .AttributeItems {
+  font-size: 12px;
+}
+
+.AttributeItems.selectedAlphanumeric {
+  background: black;
+  color: white;
+}
+
+.AttributeItems.selectedColorAttribute {
+  outline: 3px solid #5ece7b;
+  outline-offset: 2px;
 }
 
 .overlayContent .AttributeItems {
-  width: 34px;
+  width: 32px;
   height: 24px;
 }

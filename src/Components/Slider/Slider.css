@@ -9,7 +9,7 @@
 }
 
 .overlayContent .rightArrowStyles {
-  top: 150%;
+  top: 100%;
 }
 
 .leftArrowStyles {
@@ -23,19 +23,15 @@
 }
 
 .overlayContent .leftArrowStyles {
-  top: 150%;
+  top: 100%;
 }
 
 .sliderStyles {
   position: relative;
   height: 100%;
-  padding-left: 24px;
 }
 
 .overlayContent .sliderStyles {
-  position: relative;
-  height: 100%;
-  padding-left: 0px;
   transform: scale(0.52);
-  transform-origin: left top;
+  transform-origin: left;
 }
