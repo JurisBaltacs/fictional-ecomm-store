@@ -7,7 +7,6 @@ const slideStyles = {
   width: "200px",
   height: "288px",
   backgroundSize: "contain",
-  // backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
 };
 

@@ -47,5 +47,3 @@ class CategoryItems extends React.Component {
 }
 
 export default withRouter(CategoryItems);
-
-// export default CategoryItems;

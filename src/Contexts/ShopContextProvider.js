@@ -52,11 +52,6 @@ export default class ShopContextProvider extends React.Component {
 
     const updatedCartItems = [...this.state.cartItems, itemWithId];
     this.saveCartItemsToLocalStorage(updatedCartItems);
-    // try {
-    //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    // } catch (error) {
-    //   console.log("error: ", error);
-    // }
     this.setState({ cartItems: updatedCartItems });
   };
 
@@ -65,11 +60,6 @@ export default class ShopContextProvider extends React.Component {
       (item) => item.id !== productId
     );
     this.saveCartItemsToLocalStorage(updatedCartItems);
-    // try {
-    //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    // } catch (error) {
-    //   console.log("error: ", error);
-    // }
     this.setState({ cartItems: updatedCartItems });
   };
 
@@ -81,11 +71,6 @@ export default class ShopContextProvider extends React.Component {
       return item;
     });
     this.saveCartItemsToLocalStorage(updatedCartItems);
-    // try {
-    //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    // } catch (error) {
-    //   console.log("error: ", error);
-    // }
     this.setState({ cartItems: updatedCartItems });
   };
 
