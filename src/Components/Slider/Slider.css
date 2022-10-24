@@ -1,37 +1,21 @@
-.rightArrowStyles {
-  position: absolute;
-  top: 80%;
-  left: 80%;
-  font-size: 24px;
-  color: black;
-  z-index: 1;
-  cursor: pointer;
-}
-
-.overlayContent .rightArrowStyles {
-  top: 100%;
-}
-
-.leftArrowStyles {
-  position: absolute;
-  top: 80%;
-  right: 30%;
-  font-size: 24px;
-  color: black;
-  z-index: 1;
-  cursor: pointer;
-}
-
-.overlayContent .leftArrowStyles {
-  top: 100%;
+.image {
+  width: 100%;
 }
 
 .sliderStyles {
   position: relative;
-  height: 100%;
+  width: 200px;
 }
 
 .overlayContent .sliderStyles {
-  transform: scale(0.52);
-  transform-origin: left;
+  width: 150px;
+}
+
+.arrows {
+  display: flex;
+  width: 56px;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
 }

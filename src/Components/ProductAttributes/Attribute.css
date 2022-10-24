@@ -4,15 +4,11 @@
   outline: 1px solid black;
   width: 63px;
   height: 45px;
-  margin-right: 12px;
+  margin-right: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Source Sans Pro";
-}
-
-.overlayContent .AttributeItems {
-  font-size: 12px;
 }
 
 .AttributeItems.selectedAlphanumeric {
@@ -20,12 +16,28 @@
   color: white;
 }
 
-.AttributeItems.selectedColorAttribute {
-  outline: 3px solid #5ece7b;
+.colorAttribute {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  outline: 1px solid black;
+}
+
+.colorAttribute.selectedColorAttribute {
+  outline: 1px solid #5ece7b;
   outline-offset: 2px;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.overlayContent .colorAttribute {
+  width: 16px;
+  height: 16px;
 }
 
 .overlayContent .AttributeItems {
   width: 32px;
   height: 24px;
+  font-size: 12px;
 }

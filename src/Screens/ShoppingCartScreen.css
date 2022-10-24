@@ -12,10 +12,8 @@
 }
 
 .overlayContent .shoppingCartItem {
-  height: 215px;
   border: solid transparent;
-  padding: 12px 0px;
-  width: 460px;
+  padding: 20px 0px;
 }
 
 .shoppingAttributeCartItemsWrapper {

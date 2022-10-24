@@ -176,7 +176,9 @@ class ShoppingCartScreen extends React.Component {
                     </button>
                   </div>
                 </div>
-                <Slider stockStatus={item.inStock} slides={item.gallery} />
+                <Slider
+                  slides={item.gallery}
+                />
               </div>
             );
           })}

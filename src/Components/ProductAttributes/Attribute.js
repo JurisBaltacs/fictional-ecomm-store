@@ -21,7 +21,11 @@ class Attribute extends React.Component {
     return (
       <div
         onClick={isCartOverlayItem ? () => {} : this.props.onClick}
-        className={"AttributeItems" + selected}
+        className={
+          this.props.isColorAttribute
+            ? "colorAttribute" + selected
+            : "AttributeItems" + selected
+        }
         style={{ backgroundColor: this.props.color }}
       >
         {this.props.data}

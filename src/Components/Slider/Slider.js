@@ -1,20 +1,20 @@
 import React from "react";
-import "./Slider.css";
 import LeftArrow from "../../Assets/LeftArrow";
 import RightArrow from "../../Assets/RightArrow";
+import "./Slider.css";
 
-const slideStyles = {
-  width: "200px",
-  height: "288px",
-  backgroundSize: "contain",
-  backgroundRepeat: "no-repeat",
-};
-
-class Slider extends React.Component {
+class ImageSlider extends React.Component {
   constructor(props) {
     super(props);
     this.state = { currentIndex: 0 };
   }
+
+  goToNext = () => {
+    const { slides } = this.props;
+    const isLastSlide = this.state.currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : this.state.currentIndex + 1;
+    this.setState({ currentIndex: newIndex });
+  };
 
   goToPrevious = () => {
     const { slides } = this.props;
@@ -24,51 +24,37 @@ class Slider extends React.Component {
       : this.state.currentIndex - 1;
     this.setState({ currentIndex: newIndex });
   };
-  goToNext = () => {
-    const { slides } = this.props;
-    const isLastSlide = this.state.currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : this.state.currentIndex + 1;
-    this.setState({ currentIndex: newIndex });
-  };
 
   render() {
     const { slides } = this.props;
+
     const goToPrevious = this.goToPrevious;
     const goToNext = this.goToNext;
-
-    const stockStatus = this.props.stockStatus;
-
-    const slideStylesWidthBackground = {
-      ...slideStyles,
-      backgroundImage: `url(${slides[this.state.currentIndex]})`,
-      opacity: stockStatus ? 1 : 0.5,
-    };
 
     return (
       <div className="sliderStyles">
         {slides.length > 1 ? (
-          <div>
-            <div onClick={goToPrevious} className="leftArrowStyles">
+          <div className="arrows">
+            <div onClick={goToPrevious}>
               <LeftArrow />
             </div>
-            <div onClick={goToNext} className="rightArrowStyles">
+            <div onClick={goToNext}>
               <RightArrow />
             </div>
           </div>
         ) : null}
-
-        <div
-          style={{
-            opacity: stockStatus ? 0 : 1,
-          }}
-          className="outOfStock"
-        >
-          Out of stock
-        </div>
-        <div style={slideStylesWidthBackground}></div>
+        {slides.map((slide, index) => {
+          return (
+            <div key={index}>
+              {index === this.state.currentIndex && (
+                <img src={slide} className="image" />
+              )}
+            </div>
+          );
+        })}
       </div>
     );
   }
 }
 
-export default Slider;
+export default ImageSlider;
