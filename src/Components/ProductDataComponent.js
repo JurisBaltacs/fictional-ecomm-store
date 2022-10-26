@@ -186,7 +186,7 @@ class ProductDataComponent extends React.Component {
             return null;
           })}
           <div className="shoppingCartTitles">PRICE:</div>
-          <div>
+          <div className="price">
             {priceSymbol}
             {priceAmount}
           </div>

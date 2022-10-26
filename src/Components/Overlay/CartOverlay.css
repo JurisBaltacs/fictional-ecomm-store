@@ -10,8 +10,7 @@
   overflow-x: hidden;
 }
 .overlayContent {
-  display: flex;
-  flex: 1;
+  display: block;
 }
 
 .overlayTitle {

@@ -51,7 +51,7 @@ class ShoppingCartScreen extends React.Component {
                   <div className="shoppingCartBrand">{item.brand}</div>
                   <div className="shoppingCartName">{item.name}</div>
                   <div className="shoppingCartPrice">
-                    {price?.currency.symbol} &nbsp;
+                    {price?.currency.symbol}
                     {price?.amount}
                   </div>
 
@@ -176,9 +176,7 @@ class ShoppingCartScreen extends React.Component {
                     </button>
                   </div>
                 </div>
-                <Slider
-                  slides={item.gallery}
-                />
+                <Slider slides={item.gallery} />
               </div>
             );
           })}
@@ -187,13 +185,14 @@ class ShoppingCartScreen extends React.Component {
           <div className="grid-container">
             <div>Tax 21%:</div>
             <div className="shoppingCartTotals">
-              {priceSymbol} {(totalPrice * 0.21).toFixed(2)}
+              {priceSymbol}
+              {(totalPrice * 0.21).toFixed(2)}
             </div>
             <div>Quantity:</div>
             <div className="shoppingCartTotals">{totalQuantity}</div>
             <div>Total:</div>
             <div className="shoppingCartTotals">
-              {priceSymbol}&nbsp;
+              {priceSymbol}
               {totalPrice.toFixed(2)}
             </div>
           </div>

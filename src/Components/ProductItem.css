@@ -1,10 +1,12 @@
 .product {
-  width: 386px;
+  /* width: 386px; */
   height: 444px;
   padding: 16px;
   font-family: Raleway;
   position: relative;
   color: black;
+  display: flex;
+  justify-content: center;
 }
 
 .productWrapper:hover {
@@ -33,10 +35,6 @@
   display: none;
 }
 
-div > img {
-  max-width: 386px;
-  max-height: 444px;
-}
 a:-webkit-any-link {
   color: #1d1f22;
   cursor: pointer;

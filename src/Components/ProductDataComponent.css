@@ -44,6 +44,10 @@
   max-height: 386px;
 }
 
+.imageWrapper > img {
+  width: 100%;
+}
+
 .productDataAddToCart {
   margin: 20px 0px;
 }
@@ -75,8 +79,6 @@
   background: #555;
 }
 
-.visual {
-  float: left;
-  display: flex;
-  margin-right: 10px;
+.price {
+  font-weight: 700;
 }
