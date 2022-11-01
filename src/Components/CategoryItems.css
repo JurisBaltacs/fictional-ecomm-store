@@ -1,6 +1,7 @@
 .content {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 435px 435px 435px;
+  column-gap: 8px;
   background-color: #ffffff;
   padding-top: 40px;
   padding-bottom: 103px;

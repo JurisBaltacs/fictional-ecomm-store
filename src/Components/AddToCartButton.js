@@ -7,7 +7,7 @@ export default class AddToCartButton extends React.PureComponent {
       return this.props.onAddToCartClick();
     } else if (!this.props.isInStock) {
       return alert(
-        "This would be an e-mail form. :) Saying: 'Sign up to get notified when the item is available.' "
+        "This would be an e-mail form. Saying: 'Sign up to get notified when the item is available.' "
       );
     }
   };
